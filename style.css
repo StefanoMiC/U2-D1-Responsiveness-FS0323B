@@ -1,0 +1,93 @@
+h1 {
+  font-size: 68px;
+  line-height: 1;
+  display: inline-block;
+}
+
+p,
+h1 {
+  max-width: 50%;
+}
+
+.hidden-below-desktop {
+  display: none;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  display: inline-block;
+}
+
+/* max width applica dal valore specificato a quelli inferiori ad esso */
+
+/* con max-width si considera:
+da 0 -------------- 500px */
+@media screen and (max-width: 500px) {
+  h1 {
+    font-size: 48px;
+  }
+
+  p,
+  h1 {
+    max-width: initial;
+  }
+}
+
+/* min width applica dal valore specificato verso l'infinito (e oltre)  */
+/* dal più piccolo al più grande, vince quello che si trova in fondo (cascade principle) */
+
+/* 501px ---------------- infinito */
+@media screen and (min-width: 501px) {
+  .box {
+    background-color: teal;
+  }
+}
+
+/* 900px ---------------- infinito */
+@media screen and (min-width: 900px) {
+  .box {
+    background-color: palevioletred;
+    width: 300px;
+  }
+}
+
+/* 1200px ---------------- infinito */
+@media screen and (min-width: 1200px) {
+  .box {
+    background-color: lightgreen;
+    width: unset;
+    height: 300px;
+    display: block;
+  }
+
+  .hidden-below-desktop {
+    display: inline;
+  }
+}
+
+/* 1301px --------------- 1400px  (oltre 1400 cesserà di esistere, e lascerà spazio a definizioni precedentemente attivate)*/
+/* nasconde il messaggio solo per 100px */
+@media screen and (min-width: 1300px) and (max-width: 1400px) {
+  .hidden-below-desktop {
+    display: none;
+  }
+}
+
+/* da 1400px in su torna ad essere visibile perché questo blocco non verrà più applicato */
+
+@media print {
+  h1 {
+    font-size: 32px;
+  }
+
+  p,
+  h1 {
+    max-width: initial;
+  }
+
+  .box {
+    display: none;
+  }
+}
